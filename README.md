@@ -1,7 +1,8 @@
 
 # 🐶 DogePedia
-Git do desafio: https://github.com/gcarneiro/desafio-fullstack
-API utilizada: https://thedogapi.com/
+DEMO: https://davimury.tech/dogepedia/  
+Git do desafio: https://github.com/gcarneiro/desafio-fullstack  
+API utilizada: https://thedogapi.com/  
 
 ## 📝 Resumo
 Seu principal objetivo é mostrar uma lista de raças caninas paginadas, ao clicar em uma das raças abrir uma nova tela para ver mais informações sobre ela.
@@ -18,8 +19,8 @@ Seu principal objetivo é mostrar uma lista de raças caninas paginadas, ao clic
 
 ## ⚙️Instalação
 ### Backend
-Configure o arquivo backend/db_connection.php com as informações do seu banco.
-Inicie o script backend/consume_api.php
+Configure o arquivo backend/db_connection.php com as informações do seu banco.  
+Inicie o script backend/consume_api.php  
 
 ### Frontend
 ```

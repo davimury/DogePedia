@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
     Box, Pagination, ImageList, ImageListItem,
     ImageListItemBar, CssBaseline, Container,
-    Button, TextField, Grid, InputAdornment,
+    TextField, Grid, InputAdornment,
     CircularProgress
 } from '@mui/material';
 
@@ -32,27 +32,18 @@ export default function Home() {
         dog_breeds: [],
         order: 'Asc',
         pageCount: 0,
-        currentPage: searchParams.get('page') ? Number(searchParams.get('page')) : 1 // Se não existir a query string curPage setar ele para 1
+        currentPage: 1,
     });
 
-    function toggleOrderMode() {
-        let curOrder = state.order
-
-        if (curOrder == 'Asc') { setState({ ...state, order: 'Desc' }) }
-        else if (curOrder == 'Desc') { setState({ ...state, order: 'Asc' }) }
-    }
-
-    function updatePageParam(new_page) {
-        navigate(`/?page=${new_page}`)
-        setState({ ...state, currentPage: new_page, loading: true })
-    }
-
     useEffect(() => {
-        api.get(`/breeds?limit=25&page=${state.currentPage - 1}&order=${state.order}`)
+        setState({ ...state, loading: true })
+        let currentPage = searchParams.get('page') ? Number(searchParams.get('page')) : 1 // Se não existir a query string curPage setar ele para 1
+        api.get(`/breeds?limit=25&page=${currentPage - 1}&order=${state.order}`)
             .then((response) => {
                 setState({
                     ...state,
                     dog_breeds: response['data'],
+                    currentPage: currentPage,
                     pageCount: Math.ceil(response['headers']['pagination-count'] / 25),
                     loading: false
                 })
@@ -60,7 +51,7 @@ export default function Home() {
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
             });
-    }, [state.currentPage, state.order]);
+    }, [state.currentPage, state.order, searchParams]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -102,7 +93,7 @@ export default function Home() {
                                             <Box display="flex" justifyContent="flex-end" alignItems="center">
                                                 <SortByAlphaIcon
                                                     style={state.order == 'Asc' ? { color: '#34bedd ' } : {}}
-                                                    onClick={() => toggleOrderMode()} />
+                                                    onClick={() => { state.order == 'Asc' ? setState({ ...state, order: 'Desc' }) : setState({ ...state, order: 'Asc' }) }} />
                                             </Box>
                                         </Grid>
                                     </Grid>
@@ -111,7 +102,6 @@ export default function Home() {
                                         {state.dog_breeds.map((item) => (
                                             <Link key={item.id} style={{ textDecoration: 'none' }} to={{ pathname: "/breed", search: `?id=${item.id}` }}>
                                                 <ImageListItem key={item.id}>
-
                                                     <img
                                                         width={item.image.width}
                                                         height={item.image.height}
@@ -120,7 +110,6 @@ export default function Home() {
                                                         loading="lazy"
                                                     />
                                                     <ImageListItemBar title={item.name} subtitle={`Expectativa de vida: ${item.life_span.replace('years', 'anos')}`} />
-
                                                 </ImageListItem>
                                             </Link>
                                         ))}
@@ -131,7 +120,7 @@ export default function Home() {
                                         sx={{ pt: 6 }}
                                         page={state.currentPage}
                                         count={state.pageCount}
-                                        onChange={(event, page) => updatePageParam(page)}
+                                        onChange={(event, page) => navigate(`/?page=${page}`)}
                                         color="primary"
                                     />
                                 </Container>
