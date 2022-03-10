@@ -1,6 +1,6 @@
 
 # 🐶 DogePedia
-DEMO: https://davimury.tech/dogepedia/  
+LIVE DEMO: https://davimury.tech/dogepedia/  
 Git do desafio: https://github.com/gcarneiro/desafio-fullstack  
 API utilizada: https://thedogapi.com/  
 
@@ -11,7 +11,6 @@ Seu principal objetivo é mostrar uma lista de raças caninas paginadas, ao clic
 ### React, React-Router, MaterialUI, PHP, MySql
 
 ## 🖼️ Imagens
-![alt text](https://github.com/davimury/DogePedia/blob/main/images/demo.gif)
 ![alt text](https://github.com/davimury/DogePedia/blob/main/images/1.png)
 ![alt text](https://github.com/davimury/DogePedia/blob/main/images/2.png)
 ![alt text](https://github.com/davimury/DogePedia/blob/main/images/3.png)
