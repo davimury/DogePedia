@@ -6,7 +6,7 @@ Projeto para o desafio: https://github.com/gcarneiro/desafio-fullstack
 Seu principal objetivo é mostrar uma lista de raças caninas paginadas, ao clicar em uma das raças abrir uma nova tela para ver mais informações sobre ela.
 
 ## 💻 Tecnologias
-### React, React-Router, MaterialUI
+### React, React-Router, MaterialUI, PHP, MySql
 
 ## 🖼️ Imagens
 ![alt text](https://github.com/davimury/DogePedia/blob/main/images/1.png)
@@ -16,12 +16,12 @@ Seu principal objetivo é mostrar uma lista de raças caninas paginadas, ao clic
 
 ## ⚙️Instalação
 ### Backend
-
+Configure o arquivo backend/db_connection.php com as informações do seu banco.
+Inicie o script backend/consume_api.php
 
 ### Frontend
 ```
 yarn
-```
-```
+
 yarn start
 ```
